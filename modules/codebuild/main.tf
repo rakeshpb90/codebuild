@@ -45,6 +45,7 @@ resource "aws_codebuild_webhook" "plan" {
       type    = "EVENT"
       pattern = "PULL_REQUEST_CREATED,PULL_REQUEST_UPDATED,PULL_REQUEST_REOPENED"
     }
+    
   }
 }
 
@@ -56,6 +57,10 @@ resource "aws_codebuild_webhook" "apply" {
     filter {
       type    = "EVENT"
       pattern = "PUSH"
+    }
+    filter {
+      type    = "BASE_REF"
+      pattern = "master"
     }
   }
 }
